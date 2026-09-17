@@ -101,8 +101,8 @@ Commercial TE-Speed-MiniMaxH3 is supported through a narrowly scoped boundary wr
 
 ## Example workflow
 
-- [General workflow — English](examples/workflows/MiniMax-H3-FP16-Chunk-Star7-English.json): one graph covers SM75 and SM80+ with automatic safe precision selection, all-in-one conditioning, live preview, and optional face restoration disabled by default.
-- [通用工作流（中文）](examples/workflows/MiniMax-H3-FP16-Chunk-Star7.json)
+- [General workflow - English](examples/workflows/MiniMax-H3-FP16-Chunk-Star7-English.json): one graph covers SM75 and SM80+ with automatic safe precision selection, all-in-one conditioning, live preview, independent chunked H3 decoding, and optional second-pass refinement disabled by default. It can be used directly as a normal generation workflow after import.
+- [通用工作流（中文）](examples/workflows/MiniMax-H3-FP16-Chunk-Star7.json): Chinese version with the same features and defaults.
 
 ## Scope and diagnostics
 

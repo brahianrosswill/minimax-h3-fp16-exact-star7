@@ -18,7 +18,7 @@ import comfy.supported_models
 import comfy.utils
 
 
-NODE_VERSION = "2.0.12"
+NODE_VERSION = "2.0.14"
 PATCH_FLAG = "star7_minimax_h3_fp16_exact_fix"
 PATCH_MODE = "star7_minimax_h3_fp16_mode"
 TE_RUNTIME_KEY = "te_speed_minimax_h3_runtime"
@@ -165,7 +165,10 @@ def _mlp_forward(original_forward):
 
 
 def _block_forward(original_forward, minimax_module):
-    def forward(self, x, t_emb, mod_segments, rope_freqs, transformer_options={}):
+    def forward(
+        self, x, t_emb, mod_segments, rope_freqs, transformer_options={},
+        attention=None, **_kwargs,
+    ):
         if x.dtype != torch.float32:
             x = x.to(torch.float32)
 
@@ -174,13 +177,14 @@ def _block_forward(original_forward, minimax_module):
         h = minimax_module._mod_scale_shift(
             self.norm1(x), shift_msa, scale_msa, mod_segments
         ).to(torch.float16)
-        attention = self.attn(
+        attention_fn = self.attn if attention is None else attention
+        attention_output = attention_fn(
             h,
             rope_freqs=rope_freqs,
             transformer_options=transformer_options,
         )
         x = minimax_module._mod_gate(
-            x, gate_msa, attention.to(torch.float32), mod_segments
+            x, gate_msa, attention_output.to(torch.float32), mod_segments
         )
 
         h = minimax_module._mod_scale_shift(

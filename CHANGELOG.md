@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.14 - 2026-09-17
+
+- Accept ComfyUI 0.36 H3 block attention overrides and execute the supplied
+  attention callable after FP16 normalization, preserving VSA and other block
+  replacements under FP16 Exact protection.
+
+## 2.0.13 - 2026-09-16
+
+- Synchronized the packaged Chinese and English examples with the current
+  general H3 workflow. Optional second-pass refinement remains disabled by
+  default, so both examples can be used directly as normal generation workflows.
+- Replaced the old face-repair decode path with optional one-click HD refinement
+  and independent chunked H3 decoding.
+
 ## 2.0.12 - 2026-09-04
 
 - Added the same process-wide `comfyui-minimax-h3-turing` isolation used by

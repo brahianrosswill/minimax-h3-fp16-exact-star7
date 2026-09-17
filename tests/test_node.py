@@ -322,6 +322,21 @@ def test_fp32_te_carrier_keeps_block_compute_inputs_fp16():
     assert result.dtype is torch.float32
     assert seen == {"attention": torch.float16, "mlp": torch.float16}
 
+    def sparse_attention(value, **_kwargs):
+        seen["override"] = value.dtype
+        return value
+
+    protected_forward(
+        Block(),
+        torch.ones(1, 2, dtype=torch.float32),
+        torch.zeros(1),
+        [],
+        None,
+        {module.TE_RUNTIME_KEY: object()},
+        attention=sparse_attention,
+    )
+    assert seen["override"] is torch.float16
+
 
 def test_quantized_model_preserves_native_dispatch():
     module = load_nodes()
