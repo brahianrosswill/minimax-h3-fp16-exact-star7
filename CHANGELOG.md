@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.15 - 2026-09-18
+
+- Replace Chinese and English examples with the 0919 workflow and this project's MiniMaxH3FP16LoaderStar7 loader.
+- Include optional HD and Face Repair before independent chunked decoding; examples require minimax-h3-chunk-star7 >= 2.16.2. Loader runtime is unchanged.
+
 ## 2.0.14 - 2026-09-17
 
 - Accept ComfyUI 0.36 H3 block attention overrides and execute the supplied

@@ -2,6 +2,8 @@
 
 [中文说明](#中文说明) · [English](README_EN.md) · [示例工作流](examples/workflows)
 
+新版示例基于 0919 工作流，顺序为一采 → 可选二采 → 可选人脸修复 → Star7 分块解码；二采与修脸默认关闭。请先选择本机模型文件，需要参考素材时载入自己的图片或视频并取消绕过。修脸需分块项目 2.16.2 或更新版本。
+
 Native FP16 model loading and scoped numerical protection for ComfyUI MiniMax H3 on pre-BF16 architectures. On SM80+, the loader explicitly corrects H3 to native BF16 even when the launcher globally requests FP16. Quantized checkpoints retain eligible INT8/ConvRot kernels instead of being expanded into dense FP16 weights.
 
 The overflow-protection method is derived from the MIT-licensed [Amduraznak/minimax-h3-fp16-fix](https://github.com/Amduraznak/minimax-h3-fp16-fix). This package provides a native MiniMax H3 loader, quantization-aware dispatch, architecture checks, scoped ModelPatcher integration, diagnostics, and ComfyUI workflow support.

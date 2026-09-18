@@ -2,6 +2,8 @@
 
 [中文](README.md) · [Example workflows](examples/workflows)
 
+The refreshed 0919 examples use first pass → optional HD → optional Face Repair → Star7 Chunked Decode. HD and Face Repair are disabled by default. Select installed model files; load your own reference media and unbypass those nodes if needed. Face repair requires chunk project 2.16.2 or newer.
+
 Native FP16 model loading and scoped numerical protection for ComfyUI MiniMax H3 on pre-BF16 architectures. On SM80+, the loader explicitly corrects H3 to native BF16 even when the launcher globally requests FP16. Quantized checkpoints retain eligible INT8/ConvRot kernels instead of being expanded into resident dense FP16 weights.
 
 The overflow-protection method is derived from the MIT-licensed [Amduraznak/minimax-h3-fp16-fix](https://github.com/Amduraznak/minimax-h3-fp16-fix). This package adds a native H3 loader, quantization-aware dispatch, architecture checks, scoped ModelPatcher integration, diagnostics, and workflow support.
